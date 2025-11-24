@@ -1,0 +1,30 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "tailwindcss";
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* Fix for Angular Material form fields with Tailwind */
+.mdc-notched-outline__leading,
+.mdc-notched-outline__notch,
+.mdc-notched-outline__trailing {
+    border-right: none;
+    border-left: none;
+    box-sizing: border-box;
+}
+
+.mdc-notched-outline__leading {
+    border-left: 1px solid;
+    border-right: none;
+}
+
+.mdc-notched-outline__trailing {
+    border-right: 1px solid;
+    border-left: none;
+}
+
+.mdc-notched-outline__notch {
+    border-left: none;
+    border-right: none;
+}

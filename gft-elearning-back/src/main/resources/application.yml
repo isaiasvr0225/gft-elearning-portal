@@ -1,0 +1,45 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: gft-elearning-backend
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    properties:
+      hibernate:
+        jdbc:
+          batch_size: 200
+        order_inserts: true
+        order_updates: true
+        batch_versioned_data: true
+        generate_statistics: false
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USER}
+    password: ${DB_PASS}
+    hikari:
+      data-source-properties.stringtype: unspecified
+      tomcat:
+        connection-properties: stringtype=unspecified
+  #flyway:
+    #enabled: true
+    #locations: classpath:db/migration
+    #baseline-on-migrate: true
+#eureka:
+  #instance:
+    #hostname: localhost
+  #client:
+    #service-url:
+      #defaultZone: http://localhost:8761/eureka
+mail:
+  sender:
+    email: profetavr18@gmail.com
+    password: vpiybyhsogkaygiu
+
+app:
+  frontend:
+    start-course-url: http://localhost:4200/courses

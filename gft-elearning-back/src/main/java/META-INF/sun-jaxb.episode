@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<bindings xmlns="http://java.sun.com/xml/ns/jaxb" if-exists="true" version="2.1">
+      
+    <!--
+
+Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.3.0 
+Visite <a href="https://javaee.github.io/jaxb-v2/">https://javaee.github.io/jaxb-v2/</a> 
+Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
+Generado el: 2025.03.21 a las 05:17:10 PM COT 
+
+  -->
+      
+    <bindings xmlns:tns="http://tempuri.org/" if-exists="true" scd="x-schema::tns">
+            
+        <schemaBindings map="false">
+                  
+            <package name="co.com.carry.microservice.auth.domain.rndc"/>
+                
+        </schemaBindings>
+            
+        <bindings if-exists="true" scd="tns:AtenderMensajeRNDC0Request">
+                  
+            <class ref="rndc.domain.co.com.carry.AtenderMensajeRNDC0Request"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="tns:AtenderMensajeRNDC0Response">
+                  
+            <class ref="rndc.domain.co.com.carry.AtenderMensajeRNDC0Response"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="tns:AtenderMensajeBPM1Request">
+                  
+            <class ref="rndc.domain.co.com.carry.AtenderMensajeBPM1Request"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="tns:AtenderMensajeBPM1Response">
+                  
+            <class ref="rndc.domain.co.com.carry.AtenderMensajeBPM1Response"/>
+                
+        </bindings>
+          
+    </bindings>
+    
+</bindings>

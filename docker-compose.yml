@@ -1,0 +1,72 @@
+version: "3.8"
+services:
+  # Base de datos PostgreSQL
+  elearning-db:
+    image: postgres:15-alpine
+    container_name: elearning-db
+    restart: always
+    environment:
+      POSTGRES_DB: elearning
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - elearning-db-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - elearning-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Backend Spring Boot
+  elearning-back:
+    build:
+      context: ./gft-elearning-back
+      dockerfile: Dockerfile
+    container_name: elearning-back
+    restart: always
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://elearning-db:5432/elearning
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgres
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_JPA_SHOW_SQL: "true"
+      SERVER_PORT: 8080
+    ports:
+      - "8080:8080"
+    depends_on:
+      elearning-db:
+        condition: service_healthy
+    networks:
+      - elearning-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/actuator/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Frontend Angular
+  elearning-front:
+    build:
+      context: ./gft-elearning-front
+      dockerfile: Dockerfile
+    container_name: elearning-front
+    restart: always
+    ports:
+      - "80:80"
+    depends_on:
+      - elearning-back
+    networks:
+      - elearning-network
+
+volumes:
+  elearning-db-data:
+    driver: local
+
+networks:
+  elearning-network:
+    driver: bridge
